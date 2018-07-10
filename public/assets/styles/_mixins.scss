@@ -1,0 +1,65 @@
+@mixin btn-type($name, $font-color: #ffffff, $background-color: #000000){
+  .btn-#{$name}{
+    background: $background-color;
+    color: $font-color;
+    @if lightness($font-color) > lightness($background-color){
+      text-shadow: -1px -1px 1px shade($font-color,30%);
+    } @else {
+      text-shadow: 1px 1px 1px tint($font-color,30%);
+    }
+    &:hover{
+      box-shadow: 1px 1px 2px transparentize(shade($background-color, 10%), 0.4);
+    }
+  }
+}
+
+@mixin shell-gradient($start: #d7d7d7, $middle: #7f7f7f){
+  @include background-image(
+    linear-gradient($start 0px, $middle 60px, $middle 80px,$start 140px, transparent 180px),
+    linear-gradient(to top, $start 0px, $middle 60px, $middle 80px,$start 140px, transparent 180px)
+  );
+}
+
+@mixin toggler{
+  display: none;
+  & ~ .toggler-checked{
+    display: none;
+  }
+  &:checked ~ .toggler-checked{
+    display: block;
+    clear: both;
+  }
+  & ~ .toggler-uchecked{
+    display: block;
+    clear: both;
+  }
+  &:checked ~ .toggler-uchecked{
+    display: none;
+  }
+
+  &:checked ~ .toggler-label{
+    & > .toggler-checked{
+      display: inline;
+    }
+    & > .toggler-unchecked{
+      display: none;
+    }
+    background-color: #ffffff;
+    box-shadow: 1px 1px 3px #767676 inset;
+  }
+  & ~ .toggler-label{
+    & > .toggler-checked{
+      display: none;
+    }
+    text-transform: uppercase;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #cccccc;
+    color: #767676;
+    text-shadow: 0px -1px 1px transparentize(#767676,0.6);
+    box-shadow: 1px 1px 3px #767676;
+    padding: 5px;
+    border-radius: 5px;
+  }
+}

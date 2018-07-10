@@ -1,0 +1,8 @@
+public/assets/app.js
+public/assets/app.js.map
+bower_components/
+jspm_packages/
+node_modules/
+*.log
+*.cache
+.DS_Store
